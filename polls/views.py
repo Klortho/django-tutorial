@@ -32,6 +32,12 @@ class DetailView(generic.DetailView):
     model = Poll
     template_name = 'polls/detail.html'
 
+    def get_queryset(self):
+        """
+        Excludes any polls that aren't published yet.
+        """
+        return Poll.objects.filter(pub_date__lte=timezone.now())
+
 #def detail(request, poll_id):
 #    poll = get_object_or_404(Poll, pk=poll_id)
 #    return render(request, 'polls/detail.html', {'poll': poll})
