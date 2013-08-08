@@ -7,6 +7,7 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.views import generic
+import os
 
 
 class IndexView(generic.ListView):
@@ -21,7 +22,6 @@ class IndexView(generic.ListView):
 #    latest_poll_list = Poll.objects.order_by('-pub_date')[:5]
 #    context = {'latest_poll_list': latest_poll_list}
 #    return render(request, 'polls/index.html', context)
-
 
 class DetailView(generic.DetailView):
     model = Poll

@@ -1,4 +1,10 @@
 # Django settings for myproject project.
+# We assume this Git repo is installed in $SITE_HOME/django-tutorial, and
+# the sqlite database is a sibling, $SITE_HOME/mydb.
+
+import os
+SITE_HOME = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -12,7 +18,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/klortho/django/mydb',    # Or path to database file if using sqlite3.
+        'NAME': os.path.join(SITE_HOME, 'mydb'),
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
