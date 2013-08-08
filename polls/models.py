@@ -22,7 +22,8 @@ class Poll(models.Model):
 
     # Here's a custom method for demo purposes
     def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <  now
     # These method attributes control how this custom field looks in the admin
     # interface (see https://docs.djangoproject.com/en/1.5/intro/tutorial02/)
     was_published_recently.admin_order_field = 'pub_date'
