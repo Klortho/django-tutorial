@@ -8,10 +8,10 @@ To run it, on a Unix box, create an empty directory, cd into it, clone this
 repository, and then run:
 
 ```bash
-virtualenv myenv
+cd django-tutorial
+virtualenv env
 . myenv/bin/activate
 pip install django
-cd django-tutorial
 python manage.py syncdb  # add a superuser account and password
 ./manage.py runserver 0.0.0.0:8000  # or whatever port you want
 ```
