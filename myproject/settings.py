@@ -3,7 +3,7 @@
 # the sqlite database is a sibling, $SITE_HOME/mydb.
 
 import os
-SITE_HOME = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+SITE_HOME = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

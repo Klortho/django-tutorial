@@ -6,11 +6,13 @@ from django.utils import timezone
 # https://docs.djangoproject.com/en/1.5/ref/models/instances/
 
 class Poll(models.Model):
+
     # Each field is represented by an instance of the Field class - the name
     # depends on the data type.
     # The max_length argument of CharField is required.
     # Model field reference:  https://docs.djangoproject.com/en/1.5/ref/models/fields/
     question = models.CharField(max_length=200)
+
     # The first, optional positional argument is the human-readable name.
     # If it's not given, the machine-readable name will be used as the label.
     pub_date = models.DateTimeField('date published')
@@ -24,6 +26,7 @@ class Poll(models.Model):
     def was_published_recently(self):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <  now
+
     # These method attributes control how this custom field looks in the admin
     # interface (see https://docs.djangoproject.com/en/1.5/intro/tutorial02/)
     was_published_recently.admin_order_field = 'pub_date'

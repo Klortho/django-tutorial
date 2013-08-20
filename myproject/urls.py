@@ -1,13 +1,11 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from myproject import views
 admin.autodiscover()
 
 urlpatterns = patterns('',
     # home page
-    url(r'^$', 'myproject.views.home', name='home'),
-
-
-
+    url(r'^$', views.home, name='home'),
 
     # polls app
     url(r'^polls/', include('polls.urls', namespace="polls")),

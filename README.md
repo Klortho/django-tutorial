@@ -9,19 +9,25 @@ repository, and then run:
 
 ```bash
 cd django-tutorial
+
+# Create a virtual environment:
 virtualenv env
-. myenv/bin/activate
+
+# Activate it:
+. env/bin/activate
+
+# Install Django to it:
 pip install django
-python manage.py syncdb  # add a superuser account and password
+
+# Create the sqlite database `mydb`, and add a superuser account and password:
+./manage.py syncdb
+
+# Run the server:
 ./manage.py runserver 0.0.0.0:8000  # or whatever port you want
 ```
 
 The "0.0.0.0" tells it to accept connections from other hosts.  By default,
 it only accepts connections from localhost.
 
-Then go to one of
-
-* [http://localhost:8000/]()
-* [http://localhost:8000/admin/]()
-* [http://localhost:8000/polls/]()
+Then go to [http://localhost:8000/]().
 
