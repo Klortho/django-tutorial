@@ -3,9 +3,11 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'myproject.views.home', name='home'),
-    # url(r'^myproject/', include('myproject.foo.urls')),
+    # home page
+    url(r'^$', 'myproject.views.home', name='home'),
+
+
+
 
     # polls app
     url(r'^polls/', include('polls.urls', namespace="polls")),
