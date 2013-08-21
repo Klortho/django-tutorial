@@ -2,10 +2,13 @@
 
 from django.http import HttpResponse
 import os
+
+# For eutils example:
 import requests
-from xml.etree import ElementTree
+from lxml import etree
 
 
+#-----------------------------------------------------------
 def home(request):
     return HttpResponse(
 """
@@ -32,15 +35,25 @@ def home(request):
 """
     )
 
+
+#-----------------------------------------------------------
+# Demo of accessing an external web service (Eutilities) and processing XML data with
+# XPath
+
+_eutils_base = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
+_esearch_id_xpath = etree.XPath('/eSearchResult/IdList/Id')
+
 def eutils(request):
-    response = requests.get(
-        'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi',
-        params={'db':'pubmed', 'term':'1[geneid]'}
-    )
-    pubmed_el = ElementTree.fromstring(response.content)
-    id_xpath = pubmed_el.findall('.//IdList/Id')
+    gene_id = 2
+    response = requests.get(_eutils_base + 'esearch.fcgi',
+                            params={
+                                'db':'pubmed',
+                                'term':'{}[geneid]'.format(int(gene_id))
+                            })
+    esearch_doc = etree.fromstring(response.content)
+    ids = [id_el.text for id_el in _esearch_id_xpath(esearch_doc)]
     r = ""
-    for id_el in id_xpath:
-        r += id_el.text + "\n"
+    for id in ids:
+        r += id + "\n"
 
     return HttpResponse(r, content_type="text/plain")
