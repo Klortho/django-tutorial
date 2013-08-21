@@ -2,6 +2,8 @@
 
 from django.http import HttpResponse
 import os
+import requests
+from xml.etree import ElementTree
 
 
 def home(request):
@@ -23,9 +25,22 @@ def home(request):
 <ul>
   <li><a href='admin/'>admin/</a></li>
   <li><a href='polls/'>polls/</a></li>
+  <li><a href='eutils/'>eutils/</a> - example of fetching and parsing E-utilities XML</li>
 </ul>
 </body>
 </html>
 """
     )
 
+def eutils(request):
+    response = requests.get(
+        'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi',
+        params={'db':'pubmed', 'term':'1[geneid]'}
+    )
+    pubmed_el = ElementTree.fromstring(response.content)
+    id_xpath = pubmed_el.findall('.//IdList/Id')
+    r = ""
+    for id_el in id_xpath:
+        r += id_el.text + "\n"
+
+    return HttpResponse(r, content_type="text/plain")

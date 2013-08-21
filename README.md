@@ -16,8 +16,8 @@ virtualenv env
 # Activate it:
 . env/bin/activate
 
-# Install Django to it:
-pip install django
+# Install Django and other stuff:
+pip install -r requirements.txt
 
 # Create the sqlite database `mydb`, and add a superuser account and password:
 ./manage.py syncdb

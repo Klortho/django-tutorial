@@ -7,6 +7,9 @@ urlpatterns = patterns('',
     # home page
     url(r'^$', views.home, name='home'),
 
+    # eutilities example
+    url(r'^eutils/$', views.eutils, name='eutils'),
+
     # polls app
     url(r'^polls/', include('polls.urls', namespace="polls")),
 
