@@ -46,7 +46,7 @@ python manage.py runserver
 
 Loaded http://localhost:8000 in the browser, and got "It worked!".
 
-***Then committed 84351a3.***
+***Committed 84351a3.***
 
 Started a new app with `./manage.py startapp polls`.
 
@@ -83,3 +83,5 @@ def index(request):
 ```
 
 Brought up http://localhost:8000/polls/, and saw this view.
+
+***Committed 3110851.***
